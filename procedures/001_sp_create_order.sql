@@ -69,7 +69,7 @@ BEGIN
     order_number, customer_id, shipping_address_id, status,
     subtotal_amount, discount_amount, shipping_amount, total_amount, placed_at
   ) VALUES (
-    CONCAT('TMP-', UUID()), p_customer_id, p_shipping_address_id, 'PENDING',
+    CONCAT('TMP-', UUID_SHORT()), p_customer_id, p_shipping_address_id, 'PENDING',
     0, 0, p_shipping_amount, p_shipping_amount, UTC_TIMESTAMP(6)
   );
 
