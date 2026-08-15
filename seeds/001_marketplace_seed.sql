@@ -233,11 +233,11 @@ WHERE status = 'DELIVERED' AND order_id % 13 = 0;
 INSERT INTO return_items (return_id, order_item_id, quantity, reason, condition_on_arrival, refund_amount)
 SELECT
   r.return_id,
-  MIN(oi.order_item_id),
+  oi.order_item_id,
   1,
   CASE r.return_id % 4 WHEN 0 THEN 'DEFECTIVE' WHEN 1 THEN 'REGRET' WHEN 2 THEN 'DAMAGED' ELSE 'WRONG_ITEM' END,
   CASE r.return_id % 3 WHEN 0 THEN 'DAMAGED' WHEN 1 THEN 'OPENED' ELSE 'SEALED' END,
-  MIN(oi.unit_price)
+  oi.unit_price
 FROM returns r
 JOIN order_items oi ON oi.order_item_id = (
   SELECT MIN(selected_item.order_item_id)
@@ -253,7 +253,7 @@ INSERT INTO reviews (customer_id, product_id, order_item_id, rating, title, comm
 SELECT
   o.customer_id,
   oi.product_id,
-  MIN(oi.order_item_id),
+  oi.order_item_id,
   1 + (o.order_id % 5),
   CONCAT('Avaliação ', 1 + (o.order_id % 5), ' estrelas'),
   'Avaliação fictícia criada exclusivamente para o laboratório SQL.',
