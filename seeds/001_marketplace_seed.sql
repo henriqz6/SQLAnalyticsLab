@@ -330,7 +330,7 @@ INSERT INTO inventory_movements (
   product_id, movement_type, quantity_change, balance_after,
   reference_type, reference_id, reason, created_at, created_by
 )
-SELECT product_id, 'ADJUSTMENT', 5 - quantity_on_hand, 5, 'SEED', product_id, 'Ajuste para cenário de estoque baixo', '2026-08-01 08:00:00', 'seed'
+SELECT product_id, 'ADJUSTMENT', CAST(5 AS SIGNED) - CAST(quantity_on_hand AS SIGNED), 5, 'SEED', product_id, 'Ajuste para cenário de estoque baixo', '2026-08-01 08:00:00', 'seed'
 FROM inventory
 WHERE product_id % 17 = 0 AND quantity_on_hand <> 5;
 
