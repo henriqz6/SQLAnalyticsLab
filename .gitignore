@@ -1,0 +1,9 @@
+.env
+performance/results/*.txt
+performance/results/*.json
+!performance/results/.gitkeep
+*.log
+.DS_Store
+.idea/
+.vscode/
+*.zip

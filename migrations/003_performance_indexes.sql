@@ -1,0 +1,16 @@
+CREATE INDEX idx_customers_created_status ON customers (created_at, status);
+CREATE INDEX idx_products_active_supplier ON products (active, supplier_id);
+CREATE INDEX idx_product_categories_category_product ON product_categories (category_id, product_id);
+CREATE INDEX idx_orders_placed_status ON orders (placed_at, status);
+CREATE INDEX idx_orders_customer_placed ON orders (customer_id, placed_at DESC);
+CREATE INDEX idx_orders_coupon_status ON orders (coupon_id, status, placed_at);
+CREATE INDEX idx_order_items_product_order ON order_items (product_id, order_id);
+CREATE INDEX idx_payments_order_status ON payments (order_id, status);
+CREATE INDEX idx_shipments_status_estimated ON shipments (status, estimated_delivery_date);
+CREATE INDEX idx_returns_order_status ON returns (order_id, status);
+CREATE INDEX idx_return_items_order_item ON return_items (order_item_id);
+CREATE INDEX idx_inventory_low_stock ON inventory (quantity_on_hand, reorder_point);
+CREATE INDEX idx_inventory_movements_product_date ON inventory_movements (product_id, created_at DESC);
+CREATE INDEX idx_price_history_product_date ON product_price_history (product_id, changed_at DESC);
+CREATE INDEX idx_order_history_order_date ON order_status_history (order_id, changed_at);
+CREATE INDEX idx_audit_entity_date ON audit_log (entity_type, entity_id, occurred_at DESC);

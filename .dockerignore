@@ -1,0 +1,6 @@
+.git
+.github
+.env
+performance/results/*.txt
+*.log
+*.zip
